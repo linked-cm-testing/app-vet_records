@@ -1,0 +1,96 @@
+{
+  "name": "app",
+  "displayName": "Linked App Template",
+  "description": "Linked app — base repository for new Linked apps.",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "linkedApp": true,
+  "author": {
+    "name": "",
+    "url": "",
+    "email": ""
+  },
+  "engines": {
+    "node": "^22.22.2 || ^24.15.0"
+  },
+  "exports": {
+    "./backend": {
+      "development": "./src/backend.ts",
+      "default": "./src/backend.ts"
+    }
+  },
+  "license": "MIT",
+  "scripts": {
+    "prestart": "node scripts/ensure-env.cjs",
+    "start": "linked start",
+    "prebuild": "node scripts/ensure-env.cjs",
+    "build": "NODE_ENV=production linked build-app",
+    "serve-app": "NODE_ENV=production linked serve-app",
+    "server:prod": "npm run serve-app",
+    "server:staging": "NODE_ENV=production linked serve-app --env staging",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "prettier \"src/**/*.{js,jsx,ts,tsx,css,scss}\" --check",
+    "prettier:fix": "npm run prettier -- --write",
+    "format": "npm run prettier:fix && npm run lint:fix",
+    "test": "node --experimental-strip-types --no-warnings=ExperimentalWarning --test \"test/*.test.ts\"",
+    "test:e2e": "playwright test",
+    "postinstall": "node scripts/ensure-env.cjs && node -e \"const p='node_modules/@_linked/cli/hooks/lock-at-rest.cjs';require('fs').existsSync(p)&&require(require('path').resolve(p))\"",
+    "dependencies": "node -e \"const p='node_modules/@_linked/cli/hooks/lock-at-rest.cjs';require('fs').existsSync(p)&&require(require('path').resolve(p))\""
+  },
+  "workspaces": [
+    "packages-local/*"
+  ],
+  "keywords": [
+    "linked",
+    "linked code",
+    "linked data",
+    "structured data",
+    "RDF",
+    "semantic web",
+    "web3"
+  ],
+  "dependencies": {
+    "@_linked/core": "^2.42.1",
+    "@_linked/css": "^0.3.1",
+    "@_linked/fuseki": "^3.9.0",
+    "@_linked/primitives": "^1.9.0",
+    "@_linked/react": "^2.0.3",
+    "@_linked/schema": "^1.8.1",
+    "@_linked/server": "^3.12.0",
+    "@_linked/server-utils": "^1.16.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-error-boundary": "^3.1.3",
+    "react-router-dom": "^6.3.0"
+  },
+  "devDependencies": {
+    "@_linked/cli": "^1.57.1",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "eslint": "latest",
+    "eslint-config-prettier": "^8.9.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "latest",
+    "eslint-plugin-react-hooks": "latest",
+    "pm2": "^5.3.0",
+    "typescript-plugin-css-modules": "^5.1.0"
+  },
+  "packageManager": "npm@12.2.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:linked-fw/app-template.git"
+  },
+  "allowScripts": {
+    "esbuild": false,
+    "unrs-resolver": false,
+    "fsevents": false,
+    "@parcel/watcher": false
+  }
+}
