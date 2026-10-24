@@ -3,7 +3,7 @@
   "configurations": [
     {
       "command": "npm start",
-      "name": "Run app",
+      "name": "Run vet-records-app",
       "request": "launch",
       "type": "node-terminal"
     }
